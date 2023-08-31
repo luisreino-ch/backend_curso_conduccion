@@ -20,9 +20,9 @@ router.post('/usuario/', (req, res) => {
         estado: req.body.estado
     };
 
-    const query = `INSERT INTO usuarios (nombres, apellidos, cedula, fechaNacimiento, correoElectronic, nivelAcademico, tipoSangre, tipoLicencia, fotoExamenPs) VALUES ('${data.nombres}', '${data.apellidos}', '${data.cedula}', '${data.fechaNacimiento}', '${data.correoElectronic}', '${data.nivelAcademico}', '${data.tipoSangre}', '${data.tipoLicencia}', '${data.fotoExamenPs}')`;
+    const query = `INSERT INTO usuarios (nombres, apellidos, cedula, fechaNacimiento, correoElectronic, nivelAcademico, tipoSangre, tipoLicencia, fotoExamenPs, imagenPago, estado) VALUES ('${data.nombres}', '${data.apellidos}', '${data.cedula}', '${data.fechaNacimiento}', '${data.correoElectronic}', '${data.nivelAcademico}', '${data.tipoSangre}', '${data.tipoLicencia}', '${data.fotoExamenPs}',null,0)`;
 
-    getConnection(function (err, conn) {
+    getConnection(function (err, conn) {  
         if (err) {
             console.log('NO SE PUDO CONECTAR A LA BASE DE DATOS' + err);
         }
@@ -37,6 +37,7 @@ router.post('/usuario/', (req, res) => {
         });
     });
 });
+
 
 // Consultar todos los usuarios Estado 0
 router.get('/usuarios', (req, res) => {
