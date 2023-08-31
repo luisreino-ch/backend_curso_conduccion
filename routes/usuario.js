@@ -131,7 +131,36 @@ router.put('/usuario/update/:id', (req, res) => {
 });
 
 
+// Delete User Route (`DELETE /usuario/delete/:id`)
+router.delete('/usuario/delete/:id', (req, res) => {
+    const { id } = req.params;
 
+    const deleteQuery = `
+        DELETE FROM usuarios
+        WHERE idusuarios = ${id}
+    `;
+
+    getConnection(function (err, conn) {
+        if (err) {
+            console.log('NO SE PUDO CONECTAR A LA BASE DE DATOS' + err);
+            return res.sendStatus(500); // Internal Server Error
+        }
+
+        conn.query(deleteQuery, function (err, result) {
+            if (!err) {
+                if (result.affectedRows > 0) {
+                    return res.json({ status: 'ELIMINACIÓN EXITOSA' });
+                } else {
+                    return res.status(404).json({ error: 'Usuario no encontrado' });
+                }
+            } else {
+                console.log(err);
+                return res.sendStatus(500); // Internal Server Error
+            }
+            conn.release();
+        });
+    });
+});
 
 
 
