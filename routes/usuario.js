@@ -38,13 +38,13 @@ router.post('/usuario/', (req, res) => {
     });
 });
 
-// Consultar todos los usuarios
+// Consultar todos los usuarios Estado 0
 router.get('/usuarios', (req, res) => {
     getConnection(function (err, conn) {
         if (err) {
             return res.sendStatus(400, 'error en conexión');
         }
-        conn.query('SELECT * FROM usuarios', function (err, rows) {
+        conn.query('SELECT * FROM usuarios WHERE estado = 0', function (err, rows) {
             if (err) {
                 conn.release();
                 return res.sendStatus(400, 'No se puede conectar a la base de datos');
@@ -54,6 +54,7 @@ router.get('/usuarios', (req, res) => {
         });
     });
 });
+
 
 // Traer un usuario mediante el ID
 router.get('/usuario/getById/:id', (req, res) => {
