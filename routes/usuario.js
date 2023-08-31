@@ -94,37 +94,36 @@ router.get('/usuario/getById/:id', (req, res) => {
 });
 
 
+// Update User Route (`PUT /usuario/update/:id`)
+router.put('/usuario/update/:id', (req, res) => {
+    const { id } = req.params;
+    const updatedData = {
+        estado: req.body.estado
+    };
 
+    const updateQuery = `
+        UPDATE usuarios
+        SET
+            estado = ${updatedData.estado}
+        WHERE idusuarios = ${id}
+    `;
 
-
-
-
-/* // insertar un usuario a la bdd
-router.post('/usuario/', (req,res)=>{
-
-    const data ={
-        nombreusuario: req.body.nombreusuario,
-        apellidousuario: req.body.apellidousuario,
-        cedulausuario: req.body.cedulausuario,
-        telefonousuario: req.body.telefonousuario,
-        direccionusuario: req.body.direccionusuario,
-        correousuario: req.body.correousuario
-    }
-
-    const query = `INSERT INTO usuario (nombreusuario, apellidousuario, cedulausuario, telefonousuario, direccionusuario, correousuario) VALUES ('${data.nombreusuario}','${data.apellidousuario}','${data.cedulausuario}','${data.telefonousuario}','${data.direccionusuario}','${data.correousuario}')`;
-    
-
-    getConnection(function(err,conn){
-        if(err){
+    getConnection(function (err, conn) {
+        if (err) {
             console.log('NO SE PUDO CONECTAR A LA BASE DE DATOS' + err);
+            return res.sendStatus(500); // Internal Server Error
         }
 
-
-        conn.query(query, function(err,result){
-            if(!err){
-                return res.json({status: 'REGISTRO EXITOSO'});
-            }else{
+        conn.query(updateQuery, function (err, result) {
+            if (!err) {
+                if (result.affectedRows > 0) {
+                    return res.json({ status: 'ACTUALIZACIÓN EXITOSA' });
+                } else {
+                    return res.status(404).json({ error: 'Usuario no encontrado' });
+                }
+            } else {
                 console.log(err);
+                return res.sendStatus(500); // Internal Server Error
             }
             conn.release();
         });
@@ -132,45 +131,9 @@ router.post('/usuario/', (req,res)=>{
 });
 
 
-// consultar todos los usuarios
-router.get('/usuarios', (req,res)=>{
-    getConnection(function(err,conn){
-        const {cedula} = req.params;
-        if(err){
-            return res.sendStatus(400,'error en conexión');
-        }
-        conn.query('SELECT * FROM usuario ', function(err,rows){
-            if(err){
-                conn.release();
-                return res.sendStatus(400,'No se puede conectar a la base de datos')
-            }
-            res.send(rows);
-            conn.release();
-        });
-    });
-});
 
 
 
-// traer un usuario mediante el id 
-router.get('/usuario/getById/:id', (req,res)=>{
-    getConnection(function(err,conn){
-        const {id} = req.params;
-        console.log('entra usuario por id')
-        if(err){
-            return res.sendStatus(400);
-        }
-        conn.query('SELECT * FROM usuario WHERE idusuario = ?', [id], function(err,rows){
-            if(err){
-                conn.release();
-                return res.sendStatus(400,'No se puede conectar a la base de datos')
-            }
-            res.send(rows);
-            conn.release();
-        });
-    });
-});
- */
 
     
 
