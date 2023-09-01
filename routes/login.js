@@ -5,7 +5,6 @@ const getConnection = require('../conexion');
 
 
 const jwt = require('jsonwebtoken');
-
 router.get('/', (req, res) => {
     getConnection(function (err, conn) {
         if (err) {
