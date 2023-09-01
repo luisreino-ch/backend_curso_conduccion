@@ -21,8 +21,6 @@ router.get('/', (req, res) => {
         });
     });
 });
-
-
 router.post('/singin', (req, res) => {
     const { username, pass } = req.body;
   
