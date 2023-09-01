@@ -93,8 +93,6 @@ router.get('/usuario/getById/:id', (req, res) => {
         });
     });
 });
-
-
 // Update User Route (`PUT /usuario/update/:id`)
 router.put('/usuario/update/:id', (req, res) => {
     const { id } = req.params;
