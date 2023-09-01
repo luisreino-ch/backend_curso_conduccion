@@ -16,6 +16,12 @@ app.use(express.json({ limit: '10mb' }));
 app.use(require('./routes/usuario'));
 
 
+//routes login 
+const userRoute = require('./routes/login');
+app.use('/user', userRoute);
+
+
+
 http.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
