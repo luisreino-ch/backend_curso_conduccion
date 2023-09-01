@@ -55,8 +55,6 @@ router.get('/usuarios', (req, res) => {
         });
     });
 });
-
-
 // Consultar todos los usuarios Estado 1
 router.get('/usuarios1', (req, res) => {
     getConnection(function (err, conn) {
@@ -73,8 +71,6 @@ router.get('/usuarios1', (req, res) => {
         });
     });
 });
-
-
 // Traer un usuario mediante el ID
 router.get('/usuario/getById/:id', (req, res) => {
     getConnection(function (err, conn) {
@@ -93,8 +89,6 @@ router.get('/usuario/getById/:id', (req, res) => {
         });
     });
 });
-
-
 // Update User Route (`PUT /usuario/update/:id`)
 router.put('/usuario/update/:id', (req, res) => {
     const { id } = req.params;

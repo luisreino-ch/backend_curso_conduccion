@@ -20,6 +20,12 @@ app.use(require('./routes/usuario'));
 const userRoute = require('./routes/login');
 app.use('/user', userRoute);
 
+//routes login 
+const userRoute = require('./routes/login');
+app.use('/user', userRoute);
+
+
+
 http.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
