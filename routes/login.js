@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
+
 const getConnection = require('../conexion');
+
+
 const jwt = require('jsonwebtoken');
+
 router.get('/', (req, res) => {
     getConnection(function (err, conn) {
         if (err) {
@@ -17,9 +21,11 @@ router.get('/', (req, res) => {
         });
     });
 });
+
+
 router.post('/singin', (req, res) => {
     const { username, pass } = req.body;
-
+  
     getConnection((err, conn) => {
       if (err) {
         console.error(err);
