@@ -55,8 +55,6 @@ router.get('/usuarios', (req, res) => {
         });
     });
 });
-
-
 // Consultar todos los usuarios Estado 1
 router.get('/usuarios1', (req, res) => {
     getConnection(function (err, conn) {
