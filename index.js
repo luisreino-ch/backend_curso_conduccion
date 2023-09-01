@@ -1,7 +1,7 @@
-const app = require('express')(); 
-const cors = require('cors')
+const express = require('express');
+const app = express();
+const cors = require('cors');
 const http = require('http').Server(app);
-const express = require('express'); // para manejar como servicio
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -12,9 +12,13 @@ app.use(cors({
 
 app.use(express.json({ limit: '10mb' }));
 
-//routes
+
+// Rutas
 app.use(require('./routes/usuario'));
 
+// Rutas de inicio de sesión
+const userRoute = require('./routes/login');
+app.use('/user', userRoute);
 
 http.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
