@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 });
 router.post('/singin', (req, res) => {
     const { username, pass } = req.body;
-  
+
     getConnection((err, conn) => {
       if (err) {
         console.error(err);
