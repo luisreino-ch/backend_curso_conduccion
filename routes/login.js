@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 const getConnection = require('../conexion');
-
-
 const jwt = require('jsonwebtoken');
 router.get('/', (req, res) => {
     getConnection(function (err, conn) {
