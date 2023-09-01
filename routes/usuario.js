@@ -73,8 +73,6 @@ router.get('/usuarios1', (req, res) => {
         });
     });
 });
-
-
 // Traer un usuario mediante el ID
 router.get('/usuario/getById/:id', (req, res) => {
     getConnection(function (err, conn) {
